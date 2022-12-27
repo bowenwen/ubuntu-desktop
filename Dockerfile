@@ -108,7 +108,7 @@ RUN usermod -aG docker bo
 # USER bo
 RUN id bo
 
-WORKDIR /home/bo
+WORKDIR /root
 ENV HOME=/home/bo \
     SHELL=/bin/bash
 
