@@ -25,10 +25,8 @@ fi
 USER=${USER:-root}
 HOME=/root
 if [ "$USER" != "root" ]; then
-    echo "* enable custom group: $GROUP"
-    groupadd --gid $GID $GROUP
     echo "* enable custom user: $USER"
-    useradd --create-home --shell /bin/bash --gid $GID --user-group --groups adm,sudo,docker --uid $UID $USER
+    useradd --create-home --shell /bin/bash --user-group --groups adm,sudo,docker --uid $UID $USER
     if [ -z "$PASSWORD" ]; then
         echo "  set default password to \"ubuntu\""
         PASSWORD=ubuntu
