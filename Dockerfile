@@ -99,6 +99,10 @@ RUN wget -O /tmp/firefox-108.0.1.tar.bz2 "https://download-installer.cdn.mozilla
 # prepare directory
 COPY rootfs /
 
+# fix permissions
+RUN chmod +x /startup.sh && \
+    chmod +x /usr/local/bin/xvfb.sh
+
 WORKDIR /root
 ENV HOME=/home/ubuntu \
     SHELL=/bin/bash
