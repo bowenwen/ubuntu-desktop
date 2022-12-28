@@ -105,7 +105,6 @@ RUN useradd -rm -d /home/bo -s /bin/bash -g 1000 -G sudo -u 1000 bo
 RUN usermod -aG docker bo
 RUN id bo
 
-USER root
 WORKDIR /root
 ENV HOME=/home/bo \
     SHELL=/bin/bash
