@@ -103,7 +103,7 @@ COPY rootfs /
 RUN groupadd -g 1000 bo
 RUN useradd -rm -d /home/bo -s /bin/bash -g 1000 -G sudo -u 1000 bo
 RUN usermod -aG docker bo
-# USER bo
+USER bo
 RUN id bo
 
 WORKDIR /root
