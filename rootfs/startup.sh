@@ -50,12 +50,12 @@ fi
 PASSWORD=
 HTTP_PASSWORD=
 
-# # set up docker
-# sudo service docker start
-# if [ -n "$DOCKER_COMPOSE_DIR" ]; then
-#     cd $DOCKER_COMPOSE_DIR
-#     docker compose up -d
-# fi
+# set up docker
+service docker start
+if [ -n "$DOCKER_COMPOSE_DIR" ]; then
+    cd $DOCKER_COMPOSE_DIR
+    docker compose up -d
+fi
 
 # run tini
 exec /bin/tini -- supervisord -n -c /etc/supervisor/supervisord.conf
