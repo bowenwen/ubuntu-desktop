@@ -99,14 +99,8 @@ RUN wget -O /tmp/firefox-108.0.1.tar.bz2 "https://download-installer.cdn.mozilla
 # prepare directory
 COPY rootfs /
 
-# prepare user account
-RUN groupadd -g 1000 bo
-RUN useradd -rm -d /home/bo -s /bin/bash -g 1000 -G sudo -u 1000 bo
-RUN usermod -aG docker bo
-RUN id bo
-
 WORKDIR /root
-ENV HOME=/home/bo \
+ENV HOME=/home/ubuntu \
     SHELL=/bin/bash
 
 ENTRYPOINT ["/startup.sh"]
