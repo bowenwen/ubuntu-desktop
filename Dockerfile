@@ -94,7 +94,10 @@ RUN wget -O /tmp/firefox-108.0.1.tar.bz2 "https://download-installer.cdn.mozilla
     && tar -xvf /tmp/firefox-108.0.1.tar.bz2 \
     && mv firefox /opt \
     && ln -s /opt/firefox/firefox /usr/local/bin/firefox \
-    && wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications \
+    && wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
+
+# fix desktop shortcuts
+RUN rm /usr/share/applications/lxde-x-www-browser.desktop \
     && ln -s /usr/local/share/applications/firefox.desktop /usr/share/applications/lxde-x-www-browser.desktop
 
 # prepare directory
