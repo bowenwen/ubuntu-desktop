@@ -89,9 +89,9 @@ RUN apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated code \
     && rm -rf /var/lib/apt/lists/*
 
-# set up firefox
-RUN wget -O /tmp/firefox-108.0.1.tar.bz2 "https://download-installer.cdn.mozilla.net/pub/firefox/releases/108.0.1/linux-x86_64/en-CA/firefox-108.0.1.tar.bz2" \
-    && tar -xvf /tmp/firefox-108.0.1.tar.bz2 \
+# set up firefox - official from https://www.mozilla.org/en-US/firefox/all
+RUN wget -O /tmp/firefox-109.0.tar.bz2 "https://download-installer.cdn.mozilla.net/pub/firefox/releases/109.0/linux-x86_64/en-US/firefox-109.0.tar.bz2" \
+    && tar -xvf /tmp/firefox-109.0.tar.bz2 \
     && mv firefox /opt \
     && ln -s /opt/firefox/firefox /usr/local/bin/firefox \
     && wget https://raw.githubusercontent.com/mozilla/sumo-kb/main/install-firefox-linux/firefox.desktop -P /usr/local/share/applications
@@ -105,7 +105,8 @@ COPY rootfs /
 
 # fix permissions
 RUN chmod +x /startup.sh && \
-    chmod +x /usr/local/bin/xvfb.sh
+    chmod +x /usr/local/bin/xvfb.sh && \
+    chmod +x /bin/docker.autoheal.sh
 
 WORKDIR /root
 ENV HOME=/home/ubuntu \
