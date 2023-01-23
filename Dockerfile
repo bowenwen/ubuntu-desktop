@@ -89,6 +89,11 @@ RUN apt update \
     && apt install -y --no-install-recommends --allow-unauthenticated code \
     && rm -rf /var/lib/apt/lists/*
 
+# additional system utilities
+RUN apt update \
+    && apt install -y --no-install-recommends --allow-unauthenticated \
+    cron
+
 # set up firefox - official from https://www.mozilla.org/en-US/firefox/all
 RUN wget -O /tmp/firefox-109.0.tar.bz2 "https://download-installer.cdn.mozilla.net/pub/firefox/releases/109.0/linux-x86_64/en-US/firefox-109.0.tar.bz2" \
     && tar -xvf /tmp/firefox-109.0.tar.bz2 \
