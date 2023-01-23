@@ -106,7 +106,7 @@ COPY rootfs /
 # fix permissions
 RUN chmod +x /startup.sh && \
     chmod +x /usr/local/bin/xvfb.sh && \
-    chmod +x /bin/docker.autoheal.sh
+    chmod +x /usr/local/bin/docker.autoheal.sh
 
 WORKDIR /root
 ENV HOME=/home/ubuntu \
