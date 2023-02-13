@@ -4,7 +4,44 @@ This is a docker image that has vs code, docker, and firefox built in to help de
 
 This set up is for people who want to spin up a VM-like environment on a server, and keep changes to host system to a minimum when testing code on docker.
 
-## Set up
+
+## Getting started
+
+1. Clone and build 
+
+```
+git clone https://github.com/bowenwen/ubuntu-desktop.git
+cd ubuntu-desktop
+git pull
+docker build -t ubuntu-desktop:latest .
+```
+
+2. Start the container
+
+```
+docker container run -p 5900:5900 ubuntu-desktop:latest -d
+```
+
+Note that -p forward port from the container to host such that `-p [host_port]:[container_port]`; `-d` runs the container in dettached mode, so updates are not captured in your terminal. You may use `-v [/host/volume/location]:[/container/storage]` to specify volume mounting if you wish to persist any files within your container to your host so you don't lose any changes when you remove your containers.
+
+3. Optional: add a cron task
+
+Open terminal, then edit the cron task (password required for root)
+
+```
+sudo crontab -e
+```
+
+Enter the following as a example of checking if docker container has became unhealthy, if so, restart the entire compose stack (see `docker.autoheal.sh` script included in rootfs folder for more information):
+
+```
+5 * * * * /usr/local/bin/docker.autoheal.sh
+```
+
+Congratulations, you have a VM inside your computer that you can schedule tasks, install applications, and run commands, without it affecting your host machine.
+
+
+## Disclaimer
 
 This image set up uses the approach that installs docker binaries and daemon inside a container. To start the docker service inside a docker container, the container must have privileged access.
 
