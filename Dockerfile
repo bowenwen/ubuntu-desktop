@@ -5,7 +5,7 @@
 # base system
 ################################################################################
 
-FROM ubuntu:jammy-20221101 as system
+FROM ubuntu:jammy-20230308 as system
 LABEL maintainer="admin@bowenwen.com"
 
 RUN sed -i 's#http://archive.ubuntu.com/ubuntu/#mirror://mirrors.ubuntu.com/mirrors.txt#' /etc/apt/sources.list;
@@ -58,7 +58,7 @@ RUN apt update \
 
 # docker engine
 RUN apt update \
-    && apt install -y --no-install-recommends --allow-unauthenticated docker-ce docker-ce-cli containerd.io docker-compose-plugin \
+    && apt install -y --no-install-recommends --allow-unauthenticated docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
     && apt autoclean -y \
     && apt autoremove -y \
     && rm -rf /var/lib/apt/lists/*
